@@ -18,7 +18,8 @@ def button_add():
     newButton = tk.Button(frame, text = input_activity_code, padx=10, pady=5, fg="white", bg = "#263D42")
     newButton.bind('<Button-1>', lambda event : toggle_timer(event, input_activity_code))
     newButton.pack()
-
+    
+    ## initialize dictionary for initial values
     activity_state_dict[input_activity_code] = "inactive"
     activity_session_start_time_dict[input_activity_code] = 0.00
     activity_time_elapsed_dict[input_activity_code] = 0.00
