@@ -1,7 +1,6 @@
 import tkinter as tk
 from tkinter import Text, simpledialog
 import os
-
 import time
 
 ##User Interface
@@ -12,7 +11,7 @@ canvas.pack()
 frame = tk.Frame(root, bg="white")
 frame.place(relwidth=0.8, relheight=0.8, relx=0.1, rely=0.1)
 
-## Manually input of activity code
+
 def button_add():
     input_activity_code = activity_input.get()
     newButton = tk.Button(frame, text = input_activity_code, padx=10, pady=5, fg="white", bg = "#263D42")
@@ -26,6 +25,7 @@ def button_add():
     return None 
 
 
+## Manual input of activity code
 activity_input = tk.Entry(frame, fg="white", bg = "grey")
 activity_input.pack()
 
@@ -33,18 +33,17 @@ new_activity= tk.Button(frame, text = "Add new activity code",  padx=10, pady=5,
 new_activity.pack()
 
 
-
 ## To track the state of each button (possible state is inactive or active)
 activity_state_dict = {}
-
-## To track the cumulative time that has elapsed for each activity code
-activity_time_elapsed_dict = {}
 
 ## To track the start time of the active activity session
 activity_session_start_time_dict = {}
 
+## To track the cumulative time that has elapsed for each activity code
+activity_time_elapsed_dict = {}
 
-## Toggle Function
+
+## Toggle function for each button
 def toggle_timer(event, activity_code):
     if activity_state_dict[activity_code] == "inactive":
         activity_state_dict[activity_code] = "active"
@@ -57,7 +56,7 @@ def toggle_timer(event, activity_code):
         print(activity_time_elapsed_dict[activity_code])
 
 
-    
+## To initiate the timer for each activity code    
 def start_timer(activity_code):
     startTime = time.time() 
     activity_session_start_time_dict[activity_code] = startTime
