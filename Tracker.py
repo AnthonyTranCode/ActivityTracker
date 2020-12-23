@@ -56,7 +56,6 @@ def toggle_timer(event, activity_code):
         activity_state_dict[activity_code] = "active"
 
         ## Stop previous timer & unselecting active button
-        print(activity_state_dict[activity_code])
         if active_button_activity_code != "":
             activity_state_dict[active_button_activity_code] = "inactive"
             activity_button_dict[active_button_activity_code].config(bg =  "#263D42")
@@ -70,22 +69,29 @@ def toggle_timer(event, activity_code):
     ## If we click an active button
     elif activity_state_dict[activity_code] == "active":
         activity_state_dict[activity_code] = "inactive"
-        print(activity_state_dict[activity_code])
         
         ## Turning inactive button off 
         activity_button_dict[activity_code].config(bg =  "#263D42")
         active_button_activity_code = ""
         elapsed_timer(activity_code)
-        print(activity_time_elapsed_dict[activity_code])
+
+    display_time_elapsed()
 
 
 ## To initiate the timer for each activity code    
 def start_timer(activity_code):
     startTime = time.time() 
     activity_session_start_time_dict[activity_code] = startTime
+
+## To get the time that has elapsed
 def elapsed_timer(activity_code):
     stopTime = time.time()
     elapsedTime = stopTime - activity_session_start_time_dict[activity_code]
     activity_time_elapsed_dict[activity_code] = round((activity_time_elapsed_dict[activity_code] + elapsedTime), 2)
+
+def display_time_elapsed():
+    for key, value in activity_time_elapsed_dict.items():
+        print("code: " + key + "\t Time Elapsed: " + str(value) + "\t State: " + activity_state_dict[key])
+    print()
 
 root.mainloop()
